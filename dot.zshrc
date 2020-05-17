@@ -2,13 +2,16 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 umask 022
-stty erase 
-stty kill 
+stty erase 
+stty kill 
 set ignoreeof
 set filec
 set nohup
 set history 400
 set notify
+
+unsetopt share_history
+setopt nosharehistory
 
 PATH=/opt/local/sbin:/opt/local/bin:/usr/X11R6/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin:/Developer/usr/bin:/Users/skon/Library/Python/3.7/bin:/Developer/usr/sbin:/usr/texbin:/opt/local/lib/postgresql94/bin:${PATH}:${HOME}/bin
 MANPATH=${MANPATH}:/usr/share/man:/usr/X11R6/man:/usr/local/man:/opt/local/man:/opt/local/share/man
@@ -21,10 +24,9 @@ MANPAGER=more
 PAGER=more
 PS1="\h\$ "
 EDITOR=vi
-CVS_RSH=/usr/bin/ssh
-#CVSROOT=:ext:skon@bibs.snu.ac.kr/home/cvs
+TERM=xterm-256color
 
-export PATH HANGUL_KEYBOARD_TYPE LANG XMODIFIERS GTK_IM_MODULE MANPATH MANPAGER PS1 PAGER EDITOR CVS_RSH
+export PATH HANGUL_KEYBOARD_TYPE LANG XMODIFIERS GTK_IM_MODULE MANPATH MANPAGER PS1 PAGER EDITOR TERM
 
 alias ls="ls -vF"
 alias R="env LANG=en_US.UTF-8 R"
@@ -47,14 +49,14 @@ alias skml2="ssh -p 20242 root@172.27.107.218"
 alias sktmap="ssh -i ~/.ssh/id_rsa -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss -p 20022 1109351@223.39.118.138"
 alias homebrew="export HOMEBREW_GITHUB_TOKEN=bc6f092971a4703dd3b15b10ddc327f0248fc265"
 
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm" # Load RVM into a shell session *as a function*
-
 # java
 if which jenv > /dev/null; then eval "$(jenv init -)"; fi
 
 #networksetup -listallnetworkservices
 #networksetup -setadditionalroutes 'USB 10/100/1000 LAN' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254
-#networksetup -setadditionalroutes 'Display Ethernet' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254
+#networksetup -setadditionalroutes 'Display Ethernet' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254 192.168.99.0 255.255.255.0 192.168.10.254
+#networksetup -setadditionalroutes 'Thunderbolt Ethernet Slot 1, Port 2' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254 192.168.99.0 255.255.255.0 192.168.10.254 10.0.35.0 255.255.255.0 192.168.5.150
+#networksetup -setadditionalroutes 'Thunderbolt Ethernet Slot 1, Port 2' 10.0.35.0 255.255.255.0 192.168.5.150
 
 # Path to your oh-my-zsh installation.
 export ZSH="/Users/skon/.oh-my-zsh"
@@ -126,13 +128,19 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # Add wisely, as too many plugins slow down shell startup.
 #plugins=(git)
 plugins=(
+  gem
   git
   bundler
   dotenv
+  kubectl
   osx
   rake
   rbenv
   ruby
+  rails
+  rvm
+  zsh-completions
+  zsh-autosuggestions
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -190,6 +198,7 @@ zsh_wifi_signal(){
 }
 
 POWERLEVEL9K_CONTEXT_DEFAULT_FOREGROUND='white'
+POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND='black'
 
 #POWERLEVEL9K_CONTEXT_DEFAULT_BACKGROUND=231
 #POWERLEVEL9K_CONTEXT_ROOT_BACKGROUND=231
@@ -312,7 +321,11 @@ POWERLEVEL9K_IP_BACKGROUND="black"
 POWERLEVEL9K_IP_FOREGROUND="249"
 POWERLEVEL9K_TIME_BACKGROUND="black"
 POWERLEVEL9K_TIME_FOREGROUND="249"
-POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S} \UE12E"
+#POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S} \UE12E"
+POWERLEVEL9K_TIME_FORMAT="%D{%H:%M:%S}"
 POWERLEVEL9K_HOME_ICON=''
 POWERLEVEL9K_HOME_SUB_ICON=''
 POWERLEVEL9K_FOLDER_ICON=''
+
+# Autosuggestion
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
