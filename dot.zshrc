@@ -132,6 +132,7 @@ plugins=(
   git
   bundler
   dotenv
+  kafka
   kubectl
   osx
   rake
