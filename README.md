@@ -5,7 +5,11 @@
 * [Powerlevel10k](https://github.com/romkatv/powerlevel10k)
 * [zsh-autosuggestions](https://github.com/zsh-users/zsh-autosuggestions)
 * [zsh-completions](https://github.com/zsh-users/zsh-completions)
-* [kafka-zsh-completions](https://github.com/Dabz/kafka-zsh-completions) (remove... too slow)
+* [kafka-zsh-completions](https://github.com/Dabz/kafka-zsh-completions) (removed... too slow)
+
+### Font
+[MesloGS Nerd Font Regular](https://www.nerdfonts.com)
 
 ###### etc
 * [Powerlevel9k theme](https://github.com/bhilburn/powerlevel9k/wiki/Show-Off-Your-Config)
+
