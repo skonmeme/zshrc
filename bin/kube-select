@@ -1,0 +1,43 @@
+#/bin/sh
+
+KUBE=`ls ~/.kubernetes`
+
+help() {
+	echo "Set up kubernetes authentication"
+	echo ""
+	echo "kube-select [OPTIONS] HOSTNAME"
+	echo "    -l   list available kubernetes admin servers"
+	echo "    -h   help page"
+	exit 0
+}
+
+while getopts "lh" opt
+do 
+	case $opt in
+		l)
+			echo "Available Kubernetes admin servers:"
+			for K in $KUBE; do
+				echo "\t$K"
+			done
+			exit 0
+			;;	
+		h) help ;;
+		?) help ;;
+	esac
+done
+
+shift $(( $OPTIND - 1))
+kube=$1
+
+if [ "X$kube" = "X" ]; then
+	help
+fi
+
+if [ -e $HOME/.kube ]; then
+	rm -rf $HOME/.kube
+fi
+if [ -f $HOME/.kubernetes/$kube/config ]; then
+	ln -s $HOME/.kubernetes/$kube $HOME/.kube
+else
+	echo "$kube is not avaiable Kubernetes admin server"
+fi
