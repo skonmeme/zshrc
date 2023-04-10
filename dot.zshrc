@@ -1,3 +1,5 @@
+#stty erase 
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -7,80 +9,21 @@ fi
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
-
-umask 022
-#stty erase 
-#stty kill 
-set ignoreeof
-set filec
-set nohup
-set history 400
-set notify
-
-unsetopt share_history
-setopt nosharehistory
-
-export HANGUL_KEYBOARD_TYPE=3
-export LANG=ko_KR.UTF-8
-#XMODIFIERS="@im=nabi"
-export XMODIFIERS="@im=scim"
-export GTK_IM_MODULE=xim
-export MANPAGER=more
-export PAGER=more
-export PS1="\h\$ "
-export EDITOR=vi
-export TERM=xterm-256color
-# Docker
-export DOCKER_HOST="tcp://10.0.35.100:2376"
-export DOCKER_TLS_VERIFY=1
-export DOCKER_CERT_PATH=/Users/skon/.certs/docker
-export GOPATH=$HOME/.go
-export PATH=/opt/local/sbin:/opt/local/bin:/usr/X11R6/sbin:/usr/X11R6/bin:/usr/local/sbin:/usr/local/bin:/Developer/usr/bin:/Users/skon/Library/Python/3.7/bin:/Developer/usr/sbin:/usr/texbin:/opt/local/lib/postgresql94/bin:${PATH}:${HOME}/bin
-export MANPATH=${MANPATH}:/usr/share/man:/usr/X11R6/man:/usr/local/man:/opt/local/man:/opt/local/share/man
-
-alias ls="ls -vF"
-alias R="env LANG=en_US.UTF-8 R"
-alias skpdm1="ssh skonmeme@50.1.100.231"
-alias skpdm2="ssh skonmeme@50.1.100.232"
-alias skpdm3="ssh skonmeme@50.1.100.233"
-alias skpdm4="ssh skonmeme@50.1.100.234"
-alias skpdm5="ssh skonmeme@50.1.100.235"
-alias skpdm6="ssh skonmeme@50.1.100.227"
-alias skpdm7="ssh skonmeme@50.1.100.228"
-alias skpdm8="ssh skonmeme@50.1.100.229"
-alias skpdm9="ssh skonmeme@50.1.100.230"
-alias skjupyter1="ssh -p 54017 skonmeme@50.1.100.231"
-alias skjupyter2="ssh -p 54017 skonmeme@50.1.100.232"
-alias skjupyter3="ssh -p 54017 skonmeme@50.1.100.233"
-alias skjupyter4="ssh -p 54017 skonmeme@50.1.100.234"
-alias skjupyter5="ssh -p 54017 skonmeme@50.1.100.235"
-alias skml1="ssh -p 20242 root@172.27.107.217"
-alias skml2="ssh -p 20242 root@172.27.107.218"
-alias sktmap="ssh -i ~/.ssh/id_rsa -oKexAlgorithms=+diffie-hellman-group1-sha1 -oHostKeyAlgorithms=+ssh-dss -p 20022 1109351@223.39.118.138"
-alias homebrew="export HOMEBREW_GITHUB_TOKEN=bc6f092971a4703dd3b15b10ddc327f0248fc265"
-
-# java
-if which jenv > /dev/null; then eval "$(jenv init -)"; fi
-
-#networksetup -listallnetworkservices
-#networksetup -setadditionalroutes 'USB 10/100/1000 LAN' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254
-#networksetup -setadditionalroutes 'Display Ethernet' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254 192.168.99.0 255.255.255.0 192.168.10.254
-#networksetup -setadditionalroutes 'Thunderbolt Ethernet Slot 1, Port 2' 192.168.110.0 255.255.255.0 192.168.10.254 50.1.100.0 255.255.255.0 192.168.10.254 50.1.101.0 255.255.255.0 192.168.10.254 50.1.102.0 255.255.255.0 192.168.10.254 50.1.103.0 255.255.255.0 192.168.10.254 172.27.0.0 255.255.0.0 192.168.10.254 192.168.0.0 255.255.240.0 192.168.10.254 192.168.99.0 255.255.255.0 192.168.10.254 10.0.35.0 255.255.255.0 192.168.5.150
-#networksetup -setadditionalroutes 'Thunderbolt Ethernet Slot 1, Port 2' 10.0.35.0 255.255.255.0 192.168.5.150
+export PATH="$PATH:/opt/homebrew/bin:$HOME/.rvm/bin:$HOME/bin:$HOME/.cargo/bin"
 
 # Path to your oh-my-zsh installation.
-export ZSH="/Users/skon/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
+# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
 #ZSH_THEME="robbyrussell"
-ZSH_THEME=powerlevel10k/powerlevel10k
+ZSH_THEME="powerlevel10k/powerlevel10k"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in ~/.oh-my-zsh/themes/
+# a theme from this variable instead of looking in $ZSH/themes/
 # If set to an empty array, this variable will have no effect.
 # ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
 
@@ -91,17 +34,16 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # Case-sensitive completion must be off. _ and - will be interchangeable.
 # HYPHEN_INSENSITIVE="true"
 
-# Uncomment the following line to disable bi-weekly auto-update checks.
-# DISABLE_AUTO_UPDATE="true"
-
-# Uncomment the following line to automatically update without prompting.
-# DISABLE_UPDATE_PROMPT="true"
+# Uncomment one of the following lines to change the auto-update behavior
+# zstyle ':omz:update' mode disabled  # disable automatic updates
+# zstyle ':omz:update' mode auto      # update automatically without asking
+# zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 
 # Uncomment the following line to change how often to auto-update (in days).
-# export UPDATE_ZSH_DAYS=13
+# zstyle ':omz:update' frequency 13
 
 # Uncomment the following line if pasting URLs and other text is messed up.
-# DISABLE_MAGIC_FUNCTIONS=true
+# DISABLE_MAGIC_FUNCTIONS="true"
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -113,6 +55,9 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
+# You can also set it to another string to have that shown instead of the default red dots.
+# e.g. COMPLETION_WAITING_DOTS="%F{yellow}waiting...%f"
+# Caution: this setting can cause issues with multiline prompts in zsh < 5.7.1 (see #5765)
 # COMPLETION_WAITING_DOTS="true"
 
 # Uncomment the following line if you want to disable marking untracked files
@@ -127,32 +72,30 @@ ZSH_THEME=powerlevel10k/powerlevel10k
 # or set a custom format using the strftime function format specifications,
 # see 'man strftime' for details.
 # HIST_STAMPS="mm/dd/yyyy"
+export HISTSIZE=1000000
 
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
 # Which plugins would you like to load?
-# Standard plugins can be found in ~/.oh-my-zsh/plugins/*
-# Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
+# Standard plugins can be found in $ZSH/plugins/
+# Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-#plugins=(git)
 plugins=(
-  gem
+  aws
+  docker
+  gcloud
   git
-  bundler
-  dotenv
-  helm
+  golang
+  gpg-agent
+  jenv
   kubectl
-  osx
-  rake
-  rbenv
-  ruby
-  rails
   rvm
-  zsh-autosuggestions
+  rust
+  tmux
+  zsh-autocomplete
 )
-# remove kafka plugin: too slow
 
 source $ZSH/oh-my-zsh.sh
 
@@ -182,8 +125,45 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Autosuggestion
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)
-
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+
+# zsh-autocomplete
+
+#Make Tab and ShiftTab cycle completions on the command line
+#bindkey '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+#Make Tab go straight to the menu and cycle there
+bindkey '\t' menu-select "$terminfo[kcbt]" menu-select
+bindkey -M menuselect '\t' menu-complete "$terminfo[kcbt]" reverse-menu-complete
+
+#zstyle ':autocomplete:*' insert-unambiguous yes
+#First insert the common substring
+# all Tab widgets
+zstyle ':autocomplete:*complete*:*' insert-unambiguous yes
+# all history widgets
+zstyle ':autocomplete:*history*:*' insert-unambiguous yes
+# ^S
+zstyle ':autocomplete:menu-search:*' insert-unambiguous yes
+#Make Enter submit the command line straight from the menu
+bindkey -M menuselect '\r' .accept-line
+# Add or don't add a space after certain completions
+zstyle ':autocomplete:*' add-space executables aliases functions builtins reserved-words commands
+
+eval "$(jenv init -)"
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/skon/.miniforge3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/skon/.miniforge3/etc/profile.d/conda.sh" ]; then
+        . "/Users/skon/.miniforge3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/skon/.miniforge3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
